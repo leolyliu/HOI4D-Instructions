@@ -35,7 +35,7 @@ TBD
 
 ### 2D Motion Segmentation
 
-We present 2D motion segmentation to annotate the human hands and the objects related to the interaction in each video. You can first use the ```get_color_map``` function in ```utils/get_color_map.py``` to convert the RGB labels to indices, and then refer to ```definitions/2D Motion Segmentation.csv``` to correlate each index to its corresponding semantic meaning.
+We present 2D motion segmentation to annotate the human hands and the objects related to the interaction in each video. You can first use the ```get_color_map``` function in ```utils/color_map.py``` to convert the RGB labels to indices, and then refer to ```definitions/motion segmentation/label.csv``` to correlate each index to its corresponding semantic meaning.
 
 ### 3D Static Scene Panoptic Segmentation
 
