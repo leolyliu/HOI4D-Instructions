@@ -66,8 +66,3 @@ Please cite HOI4D if it helps your research:
   year={2022}
 }
 ```
-
-## Lisence
-
-TBD
-
