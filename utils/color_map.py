@@ -2,6 +2,10 @@ import numpy as np
 
 
 def get_color_map(N=256):
+    """
+    Return the color (R, G, B) of each label index.
+    """
+    
     def bitget(byteval, idx):
         return ((byteval & (1 << idx)) != 0)
 

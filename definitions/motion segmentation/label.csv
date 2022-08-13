@@ -1,0 +1,17 @@
+Category ID,Category,Lable 1,Lable 2,Lable 3,Lable 4,Lable 5,Lable 6
+C1,Toy Car,Toy Car,Right Hand,,,,
+C2,Mug,Mug,Right Hand,Mug,,,
+C3,Laptop,Screen,Right Hand,Keyboard,,,
+C4,Storage Furniture,Door,Right Hand,Body of the Cabinet,Drawer,Bottle,
+C5,Bottle,Bottle,Right Hand,Mug,,,
+C6,Safe,Body of the Safe,Right Hand,Door,Bottle,,
+C7,Bowl,Bowl,Right Hand,Ball,,,
+C8,Bucket,Body of the Bucket,Right Hand,Handle,Body of the Bucket,Handle,Left Hand
+C9,Scissors,Left Part of the Scissors,Right Hand,Right Part of the Scissors,,,
+C11,Pliers,Left Part of the Pliers,Right Hand,Right Part of the Pliers,,,
+C12,Kettle,Kettle,Right Hand,Mug,,,
+C13,Knife,Knife,Right Hand,Apple,,,
+C14,Trash Can,Body of the Trash Can,Right Hand,Lid,Bottle,,
+C17,Lamp,Base,Right Hand,Tube,Top Link,Bottom Link,Left Hand
+C18,Stapler,Base,Right Hand,Slot,Lid,Paper,
+C20,Chair,Chair,Right Hand,Left Hand,,,
