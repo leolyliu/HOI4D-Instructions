@@ -10,7 +10,9 @@ HOI4D is a large-scale 4D egocentric dataset for category-level human-object int
 
 HOI4D is constructed by collected human-object interaction RGB-D videos and various annotations including object CAD models, action segmentation, 2D motion segmentation, 3D static scene panoptic segmentation, 4D dymanics scene panoptic segmentation, category-level object pose, and human hand pose.
 
-The data is organized below:
+The object CAD models are in [[HOI4D CAD models](https://drive.google.com/file/d/1evpTI51UpDg_a1kAGXQdkfSd0DlI1_Gl/view?usp=sharing)]. Please refer to the **Data Formats - Object CAD Models** section for more details.
+
+The data (except CAD models) is organized below:
 ```
 ./ZY2021080000*/H*/C*/N*/S*/s*/T*/
 |--align_rgb
