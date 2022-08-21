@@ -11,18 +11,44 @@ HOI4D is a large-scale 4D egocentric dataset for category-level human-object int
 HOI4D is constructed by collected human-object interaction RGB-D videos and various annotations including object CAD models, action segmentation, 2D motion segmentation, 3D static scene panoptic segmentation, 4D dymanics scene panoptic segmentation, category-level object pose, and human hand pose.
 
 The data is organized below:
-
-TBD
-
-```x
 ```
+./ZY2021080000*/H*/C*/N*/S*/s*/T*/
+|--align_rgb
+   |--image.mp4
+|--align_depth
+   |--depth_video.avi
+|--objpose
+   |--*.json
+|--action
+   |--color.json
+|--3Dseg
+   |--raw_pc.pcd
+   |--output.log
+   |--label.pcd
+|--2Dseg
+   |--mask
+```
+- ZY2021080000* refers to the camera ID.
+- H* refers to human ID.
+- C* refers to object class.    
+```
+mapping = [
+    '', 'ToyCar', 'Mug', 'Laptop', 'StorageFurniture', 'Bottle',
+    'Safe', 'Bowl', 'Bucket', 'Scissors', '', 'Pliers', 'Kettle',
+    'Knife', 'TrashCan', '', '', 'Lamp', 'Stapler', '', 'Chair'
+]
+```
+- N* refers to object instance ID.
+- S* refers to the room ID.
+- s* refers to the room layout ID.
+- T* refers to the task ID.
 
+The released data list refers to ```release.txt```. (The rest of the data is temporarily kept as a testset.)
 ## Data Formats
 
 ### Human-object Interaction RGB-D Videos
-
-TBD
-
+1. First you need to install [ffmpeg](https://ffmpeg.org/).
+2. Then run ``` python utils/decode.py``` to generate RGB and depth images.
 ### Object CAD Models
 
 For each rigid object, we provide a single object mesh ```{object category}/{object id}.obj```. The mesh itself is the canonical frame that defines the pose of the object.
@@ -31,7 +57,8 @@ For each articulated object, we provide the articulated part meshes as well as j
 
 ### Action Segmentation
 
-TBD
+We present Segmentation to record per-frame action class. ```duration```denotes the length of video, ```event```denotes the label of the clip, ```startTime and endTime```denotes the range of the clip.
+
 
 ### 2D Motion Segmentation
 
@@ -39,16 +66,41 @@ We present 2D motion segmentation to annotate the human hands and the objects re
 
 ### 3D Static Scene Panoptic Segmentation
 
-TBD
-
+- ```raw_pc.pcd and label.pcd```is the raw point cloud and the label of the reconstructed static scene. 
+The detailed definitions refer to ```definitions/3D segmentation/labels.xlsx```.
+- ```output.log``` is the camera pose of each frame.
+>**Note**: You can easily use the camera pose using open3d.
+```python
+import open3d as o3d
+outCam = o3d.io.read_pinhole_camera_trajectory(output.log).parameters
+```
 ### 4D Dynamic Scene Panoptic Segmentation
-
 TBD
-
 ### Category-level Object Pose
+- ```anno``` refers to translation of the part.
+- ```rotation``` refers to rotation of the part.
+- ```dimensions``` refers to scale of the part.
+Take rigid objects as an example, you can easily load the object pose using following code: 
+```python
+from scipy.spatial.transform import Rotation as Rt
+import numpy as np
 
-TBD
+def read_rtd(file, num=0):
+    with open(file, 'r') as f:
+        cont = f.read()
+        cont = eval(cont)
+    if "dataList" in cont:
+        anno = cont["dataList"][num]
+    else:
+        anno = cont["objects"][num]
 
+    trans, rot, dim = anno["center"], anno["rotation"], anno["dimensions"]
+    trans = np.array([trans['x'], trans['y'], trans['z']], dtype=np.float32)
+    rot = np.array([rot['x'], rot['y'], rot['z']])
+    dim = np.array([dim['length'], dim['width'], dim['height']], dtype=np.float32)
+    rot = Rt.from_euler('XYZ', rot).as_rotvec()
+    return np.array(rot, dtype=np.float32), trans, dim
+```
 ### Human Hand Pose
 
 TBD
