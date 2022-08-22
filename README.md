@@ -79,6 +79,12 @@ We provide scripts to generate 4D panoptic Segmentation labels.
 ```python
 python prepare_4Dseg/prepare_4Dseg_dataset.py --data_dir /PATH/TO/HOI4D --output_dir /PATH/TO/HOI4D_4Dseg
 ```
+To save storage, you can delete intermediate files by:
+```
+rm -rf ./HOI4D_4Dseg/*/*/*/*/*/*/*/background
+rm -rf ./HOI4D_4Dseg/*/*/*/*/*/*/*/foreground_*
+rm -f ./HOI4D_4Dseg/*/*/*/*/*/*/*/semantic_segmentation_label/*.ply
+```
 The results are output in semantic_segmentation_label/*.txt. The penultimate column is the semantic label and the last column is the instance label. 
 ### Category-level Object Pose
 - ```anno``` refers to translation of the part.
