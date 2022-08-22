@@ -10,9 +10,7 @@ HOI4D is a large-scale 4D egocentric dataset for category-level human-object int
 
 HOI4D is constructed by collected human-object interaction RGB-D videos and various annotations including object CAD models, action segmentation, 2D motion segmentation, 3D static scene panoptic segmentation, 4D dymanics scene panoptic segmentation, category-level object pose, and human hand pose.
 
-The object CAD models are in [[HOI4D CAD models](https://drive.google.com/file/d/1evpTI51UpDg_a1kAGXQdkfSd0DlI1_Gl/view?usp=sharing)]. Please refer to the **Data Formats - Object CAD Models** section for more details.
-
-The data (except CAD models) is organized below:
+The data is organized below:
 ```
 ./ZY2021080000*/H*/C*/N*/S*/s*/T*/
 |--align_rgb
@@ -77,7 +75,11 @@ import open3d as o3d
 outCam = o3d.io.read_pinhole_camera_trajectory(output.log).parameters
 ```
 ### 4D Dynamic Scene Panoptic Segmentation
-TBD
+We provide scripts to generate 4D panoptic Segmentation labels. 
+```python
+python prepare_4Dseg/prepare_4Dseg_dataset.py --data_dir /PATH/TO/HOI4D --output_dir /PATH/TO/HOI4D_4Dseg
+```
+The results are output in semantic_segmentation_label/*.txt. The penultimate column is the semantic label and the last column is the instance label. 
 ### Category-level Object Pose
 - ```anno``` refers to translation of the part.
 - ```rotation``` refers to rotation of the part.
