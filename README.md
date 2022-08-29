@@ -113,7 +113,35 @@ def read_rtd(file, num=0):
 ```
 ### Human Hand Pose
 
-TBD
+We present hand pose based on MANO parameters in each video. In each `.pickle` file:
+
+- `"poseCoeff"` :  refers to 3 global rotation + 45 mano pose parameters
+- `"beta"` :  refers to 10 mano shape parameters. Shape of each human ID H* are the same.
+- `"trans" ` ： refers to translation of the hand in camera frame
+- `"kps2D"` : refers to 21 keypoints projection coordination of rendered hand pose on each image.
+
+Install manopth from [here](https://github.com/hassony2/manopth.git) and put the whole `manopth` folder in the same place as your code. You may have reference problems when calling MANO. Please modify the first few lines of the corresponding files according to the actual situation.
+
+To get 3D keypoints and camera frame hand vertices, the following code might help:
+
+```python
+from manopth.manopth.manolayer import ManoLayer
+import pickle
+import torch
+
+manolayer = ManoLayer(
+        mano_root='manopth/mano/models', use_pca=False, ncomps=45, flat_hand_mean=True, side='right')
+f = open(${PKL_PATH}, 'rb')
+hand_info = pickle.load(f, encoding='latin1')
+f.close()
+
+theta = nn.Parameter(torch.FloatTensor(hand_info['poseCoeff']).unsqueeze(0))
+beta = nn.Parameter(torch.FloatTensor(hand_info['beta']).unsqueeze(0))
+trans = nn.Parameter(torch.FloatTensor(hand_info['trans']).unsqueeze(0))
+hand_verts, hand_joints = manolayer(theta, beta)
+kps3d = hand_joints / 1000.0 + trans.unsqueeze(1) # in meters
+hand_transformed_verts = hand_verts / 1000.0 + trans.unsqueeze(1)
+```
 
 ## Citation
 
