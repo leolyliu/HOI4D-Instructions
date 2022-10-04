@@ -1,0 +1,17 @@
+Category ID,Category,T1,T2,T3,T4,T5,T6
+C1,Toy Car,Pick and place,Push toy car,Put it in the drawer,Take it out of the drawer,N/A,N/A
+C2,Mug,Pick and place,Put it in the drawer,Take it out of the drawer,Fill with water by a kettle,Pour water into another mug,Pick and place (with water)
+C3,Laptop,Pick and place,Open and close the display,N/A,N/A,N/A,N/A
+C4,Storage Furniture,Open and close the drawer,Open and close the door,Put the drink in the door,Put the drink in the drawer,N/A,N/A
+C5,Bottle,Pick and place,Pour all the water into a mug,Put it in the drawer,Take it out of the drawer,Reposition the bottle,Pick and place (with water)
+C6,Safe,Open and close the door,Put something in it,Take something out of it,N/A,N/A,N/A
+C7,Bowl,Pick and place,Put it in the drawer,Take it out of the drawer,Take the ball out of the bowl,Put the ball in the bowl,Pick and place (with ball)
+C8,Bucket,Pick and place,Pour water into another bucket,N/A,N/A,N/A,N/A
+C9,Scissors,Pick and place,Cut something,N/A,N/A,N/A,N/A
+C11,Pliers,Pick and place,Take it out of the drawer,Put it in the drawer,Clamp something,N/A,N/A
+C12,Kettle,Pick and place,Pour water into a mug,N/A,N/A,N/A,N/A
+C13,Knife,Pick and place,Take it out of the drawer,Put it in the drawer,Cut apple,N/A,N/A
+C14,Trash Can,Open and close,Throw something in it,N/A,N/A,N/A,N/A
+C17,Lamp,Pick and place,Turn and fold,Turn on and turn off,N/A,N/A,N/A
+C18,Stapler,Pick and place,Bind the paper,N/A,N/A,N/A,N/A
+C20,Chair,Pick and place to the original position,Pick and place to the original position,Pick and place to a new position,Pick and place to a new position,N/A,N/A

@@ -43,17 +43,21 @@ mapping = [
 - s* refers to the room layout ID.
 - T* refers to the task ID.
 
+Please refer to ```definitions/task/task_definitions.csv``` for the definitions of C\* and T\*.
+
 The released data list refers to ```release.txt```. (The rest of the data is temporarily kept as a testset.)
 ## Data Formats
 
 ### Human-object Interaction RGB-D Videos
+
 1. First you need to install [ffmpeg](https://ffmpeg.org/).
 2. Then run ``` python utils/decode.py``` to generate RGB and depth images.
+
 ### Object CAD Models
 
 For each rigid object, we provide a single object mesh ```{object category}/{object id}.obj```. The mesh itself is the canonical frame that defines the pose of the object.
 
-For each articulated object, we provide the articulated part meshes as well as joint annotations. We utilize [partnet_anno_system](https://github.com/daerduoCarey/partnet_anno_system) to segment articulated parts from the whole object mesh. The part hierarchy is provided in ```{object category}/{object id}/result.json```, and the part meshes involved in the part hierarchy are provided in the folder ```{object category}/{object id}/{objs}/{part name}.obj```. We provide joint annotations ```{object category}/{object id}/mobility_v2.json``` including the origin, direction, and rotation (for revolute joint) or translation (for prismatic joint) limit for each joint axis. In addition to the CAD model annotations, we also provide the canonical frame of each articulated part ```{object category}/{object id}/{objs}/{part name}_align.obj``` that is used to define the part pose.
+For each articulated object, we provide the articulated part meshes as well as joint annotations. We utilize [partnet_anno_system](https://github.com/daerduoCarey/partnet_anno_system) to segment articulated parts from the whole object mesh. The part hierarchy is defined in ```{object category}/{object id}/result.json```, and the part meshes involved in the part hierarchy are provided in ```{object category}/{object id}/{objs}/{part name}.obj```. We provide joint annotations ```{object category}/{object id}/mobility_v2.json``` including the origin, direction, and rotation (for revolute joint) or translation (for prismatic joint) limit for each joint axis. In addition to the CAD model annotations, we also provide the canonical frame of each articulated part ```{object category}/{object id}/{objs}/{part name}_align.obj``` that is used to define the part pose.
 
 ### Action Segmentation
 
@@ -66,15 +70,18 @@ We present 2D motion segmentation to annotate the human hands and the objects re
 
 ### 3D Static Scene Panoptic Segmentation
 
-- ```raw_pc.pcd and label.pcd```is the raw point cloud and the label of the reconstructed static scene. 
-The detailed definitions refer to ```definitions/3D segmentation/labels.xlsx```.
+- ```raw_pc.pcd and label.pcd```is the raw point cloud and the label of the reconstructed static scene. The detailed definitions refer to ```definitions/3D segmentation/labels.xlsx```.
+
 - ```output.log``` is the camera pose of each frame.
+
 >**Note**: You can easily use the camera pose using open3d.
 ```python
 import open3d as o3d
 outCam = o3d.io.read_pinhole_camera_trajectory(output.log).parameters
 ```
+
 ### 4D Dynamic Scene Panoptic Segmentation
+
 We provide scripts to generate 4D panoptic Segmentation labels. 
 ```python
 python prepare_4Dseg/prepare_4Dseg_dataset.py --data_dir /PATH/TO/HOI4D --output_dir /PATH/TO/HOI4D_4Dseg
@@ -86,11 +93,14 @@ rm -rf ./HOI4D_4Dseg/*/*/*/*/*/*/*/foreground_*
 rm -f ./HOI4D_4Dseg/*/*/*/*/*/*/*/semantic_segmentation_label/*.ply
 ```
 The results are output in semantic_segmentation_label/*.txt. The penultimate column is the semantic label and the last column is the instance label. 
+
 ### Category-level Object Pose
+
 - ```anno``` refers to translation of the part.
 - ```rotation``` refers to rotation of the part.
 - ```dimensions``` refers to scale of the part.
 Take rigid objects as an example, you can easily load the object pose using following code: 
+
 ```python
 from scipy.spatial.transform import Rotation as Rt
 import numpy as np
@@ -111,6 +121,7 @@ def read_rtd(file, num=0):
     rot = Rt.from_euler('XYZ', rot).as_rotvec()
     return np.array(rot, dtype=np.float32), trans, dim
 ```
+
 ### Human Hand Pose
 
 We present hand pose based on MANO parameters in each video. In each `.pickle` file:
