@@ -1,7 +1,7 @@
 # HOI4D
+Please check out the HOI4D Challenge on the latest project website www.hoi4d.top !
 
 HOI4D is a large-scale 4D egocentric dataset for category-level human-object interaction. The dataset and benchmarks were generally described in a CVPR 2022 paper:
-
 **HOI4D: A 4D Egocentric Dataset for Category-Level Human-Object Interaction**
 
 [[project page](https://hoi4d.github.io/)] [[paper](https://hoi4d.github.io/HOI4D_cvpr2022.pdf)] [[supplementary](https://hoi4d.github.io/supp_cvpr2022.pdf)] [[arxiv](https://arxiv.org/pdf/2203.01577.pdf)]
